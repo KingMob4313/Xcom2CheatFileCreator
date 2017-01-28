@@ -57,6 +57,7 @@ namespace Xcom2CheatFileCreator
                 //textFor.AppendLine("SetSoldierStat eStat_BackpackSize 4" + " " + s.FirstName + " " + s.LastName);
                 //textFor.AppendLine("SetSoldierStat eStat_CombatSims 2" + " " + s.FirstName + " " + s.LastName);
                 textFor.AppendLine("SetSoldierStat eStat_Strength " + s.Strength + " " + s.FirstName + " " + s.LastName);
+
                 if (composedClassName == PsiClassName)
                 {
                     textFor.AppendLine("MakeSoldierAPsiOp " + s.FirstName + " " + s.LastName);
