@@ -13,6 +13,7 @@ Using using the cheat generator
 
 
 READYING THE TEMPLATE
+
 1) Open the 'cheatfiletemplate' in any spreadsheet manager (Google Sheets works well)
   a) Since it is a text file as well, you could manage it in a text file editor as well
 2) There will be two lines for soldiers already in the file. 
@@ -22,6 +23,7 @@ Note: In order for the cheat batch file to work, the names in the csv will need 
 4) Export the sheet as csv to your desktop
 
 USING THE CHEAT FILE GENERATOR
+
 1) Open the editor.
 2) Set your steam drive in the text box
 3) Select or unselect the option for 'the long war 2' depending on what game you are playing
@@ -34,6 +36,7 @@ USING THE CHEAT FILE GENERATOR
 Note: this will set all soldiers to level 2 in their respective class.
 
 USING THE CHEAT FILE
+
 1) Open X-Com 2
 2) Open a save game
 3) While in the Avenger view, tap '~' (tilde) key
@@ -41,6 +44,7 @@ USING THE CHEAT FILE
 5) Review the soldiers.
 
 Troubleshooting:
+
 1) If the CSV file isn't loading, try reloading the CSV in a spreadsheet editor. 
   a) Compare against the template to see if there are any differences in columns
 2) If soldier stats aren't applying to certain soldiers, check the spelling of their first and last names
