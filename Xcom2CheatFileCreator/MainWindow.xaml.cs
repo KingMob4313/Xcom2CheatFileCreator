@@ -43,5 +43,11 @@ namespace Xcom2CheatFileCreator
                 MessageBox.Show("File Created Successfully.");
             }
         }
+
+        private void AddSoldierButton_Click(object sender, RoutedEventArgs e)
+        {
+            soldierList.Add(new Soldier());
+            this.StatGrid.Items.Refresh();
+        }
     }
 }
