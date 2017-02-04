@@ -78,7 +78,7 @@ namespace Xcom2CheatFileCreator
             SaveFileDialog csvsfd = new SaveFileDialog();
             csvsfd.Filter = "CSV documents (.csv)|*.csv"; //filter files by extension
             int.TryParse(LevelSet.Text, out levelup);
-            csvsfd.InitialDirectory = @"G:\Program Files (x86)\Steam\SteamApps\common\XCOM 2\Binaries";
+            csvsfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             // Show file dialog box
             Nullable<bool> result = csvsfd.ShowDialog();
             if (result == true)
@@ -96,6 +96,7 @@ namespace Xcom2CheatFileCreator
 
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            MessageBox.Show("Coming soon.");
         }
     }
 }
