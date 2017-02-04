@@ -1,7 +1,8 @@
 # Xcom2CheatFileCreator C# csv to cheat.txt batch file for X-Com 2
 
 Instructions:
-ENABLE CONSOLE IN XCOM 2 in STEAM 
+ENABLE CONSOLE IN XCOM 2 in STEAM
+
 1. Right click on Xcom 2
 2. Select Properties
 3. Under the general tab 
