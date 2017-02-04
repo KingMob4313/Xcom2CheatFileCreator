@@ -31,7 +31,7 @@ USING THE CHEAT FILE GENERATOR
 4. Click 'Load CSV file' 
   1. Select the input CSV from your desktop
 5. Review the soldiers in the datagrid below
-  1. Edits to the soldiers here do not carry over to the cheat (yet.
+  1. Edits to the soldiers here do not carry over to the cheat (yet)
 6. Click Generate Cheat File
 7. Save it as an easily used filename cheat.bat works well
 Note: this will set all soldiers to level 2 in their respective class.
@@ -40,7 +40,7 @@ USING THE CHEAT FILE
 
 1. Open X-Com 2
 2. Open a save game
-3. While in the Avenger view, tap '~' (tilde. key
+3. While in the Avenger view, tap the tilde (~) key
 4. Type 'exec ' and then the cheat file name. Example: 'exec cheat.bat'
 5. Review the soldiers.
 
