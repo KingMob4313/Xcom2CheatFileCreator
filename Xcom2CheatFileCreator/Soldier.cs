@@ -42,6 +42,37 @@ namespace Xcom2CheatFileCreator
 
         public int Hack { get; set; }
 
-        //public int UtilitySlots { get; set; }
+        //disabled
+        public int UtilitySlots
+        {
+            get
+            {
+                return 1;
+            }
+            private set
+            {
+                value = new int();
+            }
+        }
+
+        //disabled
+        public int Backpack
+        {
+            get { return 3; }
+            private set
+            {
+                value = new int();
+            }
+        }
+
+        //disabled
+        public int Total
+        {
+            get { return 45; }
+            private set
+            {
+                value = new int();
+            }
+        }
     }
 }
