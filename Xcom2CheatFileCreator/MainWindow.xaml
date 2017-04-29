@@ -6,14 +6,16 @@
     <Grid Height="455" VerticalAlignment="Top">
         <Button Content="Add Soldier" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,-44" Width="124" Click="AddSoldierButton_Click" />
         <Button Content="LoadCSV File" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="124" Click="LoadCsvButton_Click" />
-        <Button Content="Generate Cheat File" HorizontalAlignment="Left" Margin="743,472,0,-44" VerticalAlignment="Top" Width="139" Click="GenerateFileButton_Click" />
-        <DataGrid  x:Name="StatGrid" Margin="10,125,10,10" IsReadOnly="False" CanUserAddRows="False" FrozenColumnCount="3" />
+        <Button Content="Generate Cheat File" HorizontalAlignment="Left" Margin="743,85,0,0" VerticalAlignment="Top" Width="139" FontWeight="900" Foreground="White" Background="Red" Click="GenerateFileButton_Click" />
+        <Button Content="Export CSV" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="758,0,0,382" Width="124" FontWeight="900" Foreground="White" Background="Green" Click="ExportCSVButton_Click" />
+        <DataGrid  x:Name="StatGrid" Margin="10,125,10,10" IsReadOnly="False" CanUserAddRows="False" FrozenColumnCount="3" SelectedCellsChanged="StatGrid_SelectedCellsChanged" />
         <TextBox HorizontalAlignment="Left"  x:Name="LevelSet" Height="23" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="40" Margin="90,10,0,0" />
         <Label Content="Level:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Height="23" />
-        <TextBox HorizontalAlignment="Left"  x:Name="DriveLetterSet" Height="23" MaxLength="1" TextWrapping="Wrap" Text="G" VerticalAlignment="Top" Width="40" Margin="90,38,0,0" />
+        <TextBox HorizontalAlignment="Left"  x:Name="DriveLetterSet" Height="23" MaxLength="1" TextWrapping="Wrap" Text="C" VerticalAlignment="Top" Width="40" Margin="90,38,0,0" />
         <Label Content="Steam Drive:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="75" Height="23" />
         <CheckBox Content="Long War 2" x:Name="LongWarCheckBox" IsChecked="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="371,15,0,0" />
-        <Button Content="Export CSV" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="758,0,0,343" Width="124" Click="ExportCSVButton_Click" />
+
         <Image Margin="852,10,10,415" Width="30" Height="30" Source="Nuvola_apps_kservices.png" Stretch="Fill" MouseDown="Image_MouseDown" />
+        <Button Content="Delete Soldier" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="758,0,0,-44" Width="124" Click="DeleteSoldierButton_Click" IsEnabled="False" />
     </Grid>
 </Controls:MetroWindow>

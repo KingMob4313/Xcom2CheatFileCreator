@@ -74,5 +74,28 @@ namespace Xcom2CheatFileCreator
                 value = new int();
             }
         }
+
+        public static Soldier NewSoldier()
+        {
+            Soldier currentSoldier = new Soldier();
+            currentSoldier.FirstName = "Jay";
+            currentSoldier.LastName = "Doe";
+            currentSoldier.SoldierClass = LWClass.Grenadier;
+            currentSoldier.Strength = 10;
+            currentSoldier.Health = 5;
+            currentSoldier.Mobility = 13;
+            currentSoldier.SightRadius = 27;
+            currentSoldier.Aim = 70;
+            currentSoldier.CritChance = 0;
+            currentSoldier.ArmorPierce = 0;
+            currentSoldier.FlankingAim = 10;
+            currentSoldier.FlankingCrit = 10;
+            currentSoldier.PsiOffensive = 0;
+            currentSoldier.Will = 40;
+            currentSoldier.Dodge = 0;
+            currentSoldier.Armor = 0;
+            currentSoldier.Hack = 10;
+            return currentSoldier;
+        }
     }
 }

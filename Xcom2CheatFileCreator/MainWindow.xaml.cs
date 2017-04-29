@@ -51,24 +51,16 @@ namespace Xcom2CheatFileCreator
 
         private void GenerateFileButton_Click(object sender, RoutedEventArgs e)
         {
-            string outputFile = string.Empty;
-            SaveFileDialog sfd = new SaveFileDialog();
             int.TryParse(LevelSet.Text, out levelup);
-            sfd.InitialDirectory = @"G:\Program Files (x86)\Steam\SteamApps\common\XCOM 2\Binaries";
-            // Show file dialog box
-            Nullable<bool> result = sfd.ShowDialog();
-            if (result == true)
-            {
-                char driveLetter = Convert.ToChar(DriveLetterSet.Text);
-                inputFileName = sfd.FileName;
-                soldierList = SoldierTextFileGenerator.ProcessSoldierFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked);
-                MessageBox.Show("File Created Successfully.");
-            }
+
+            inputFileName = "cheat.txt";
+            char driveLetter = Convert.ToChar(DriveLetterSet.Text);
+            soldierList = SoldierTextFileGenerator.ProcessSoldierFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked);
         }
 
         private void AddSoldierButton_Click(object sender, RoutedEventArgs e)
         {
-            soldierList.Add(new Soldier());
+            soldierList.Add(Soldier.NewSoldier());
             this.StatGrid.Items.Refresh();
         }
 
@@ -95,6 +87,15 @@ namespace Xcom2CheatFileCreator
         }
 
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Coming soon.");
+        }
+
+        private void StatGrid_SelectedCellsChanged(object sender, System.Windows.Controls.SelectedCellsChangedEventArgs e)
+        {
+        }
+
+        private void DeleteSoldierButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Coming soon.");
         }

@@ -79,11 +79,24 @@ namespace Xcom2CheatFileCreator
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.InitialDirectory = driveLetter + @":\Program Files (x86)\Steam\SteamApps\common\XCOM 2\Binaries";
 
-                StreamWriter nsw = new StreamWriter(outputFileName);
-                nsw.Write(textFor.ToString());
-                nsw.Close();
+                String initialDirectory = driveLetter + @":\Program Files (x86)\Steam\SteamApps\common\XCOM 2\Binaries";
+                if (!Directory.Exists(initialDirectory))
+                {
+                    initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                }
+                sfd.InitialDirectory = initialDirectory;
+                sfd.FileName = outputFileName;
+                sfd.Filter = "Text documents (.txt)|*.txt"; //filter files by extension
+                Nullable<bool> result = sfd.ShowDialog();
+
+                if (result == true)
+                {
+                    StreamWriter nsw = new StreamWriter(sfd.FileName);
+                    nsw.Write(textFor.ToString());
+                    nsw.Close();
+                    MessageBox.Show("File Created Successfully.");
+                }
             }
             catch (Exception e)
             {
