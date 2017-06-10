@@ -41,7 +41,7 @@ USING THE CHEAT FILE
 1. Open X-Com 2
 2. Open a save game
 3. While in the Avenger view, tap the tilde (~) key
-4. Type 'exec ' and then the cheat file name. Example: 'exec cheat.bat'
+4. Type 'exec ' and then the cheat file name. Example: 'exec cheat.txt'
 5. Review the soldiers.
 
 Troubleshooting:

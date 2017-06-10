@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
+using CsvHelper;
+using MahApps.Metro.Controls;
 
 namespace Xcom2CheatFileCreator
 {
@@ -104,6 +106,18 @@ namespace Xcom2CheatFileCreator
             }
 
             return soldierListInstance;
+        }
+
+        public static void WriteCSVFile(SaveFileDialog csvsfd, List<Soldier> soldierList)
+        {
+            TextWriter tr = File.CreateText(csvsfd.FileName);
+            CsvWriter csvW = new CsvWriter(tr);
+            csvW.WriteHeader(typeof(Soldier));
+            foreach (Soldier item in soldierList)
+            {
+                csvW.WriteRecord(item);
+            }
+            csvW.Dispose();
         }
     }
 }

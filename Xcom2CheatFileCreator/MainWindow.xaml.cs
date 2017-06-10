@@ -75,16 +75,11 @@ namespace Xcom2CheatFileCreator
             Nullable<bool> result = csvsfd.ShowDialog();
             if (result == true)
             {
-                TextWriter tr = File.CreateText(csvsfd.FileName);
-                CsvWriter csvW = new CsvWriter(tr);
-                csvW.WriteHeader(typeof(Soldier));
-                foreach (Soldier item in soldierList)
-                {
-                    csvW.WriteRecord(item);
-                }
-                csvW.Dispose();
+                SoldierTextFileGenerator.WriteCSVFile(csvsfd, soldierList);
             }
         }
+
+
 
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -97,7 +92,28 @@ namespace Xcom2CheatFileCreator
 
         private void DeleteSoldierButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Coming soon.");
+            if(StatGrid.SelectedIndex > -1)
+            {
+                soldierList.RemoveAt(StatGrid.SelectedIndex);
+                StatGrid.Items.Refresh();
+            }
+            else
+            {
+                //MessageBox.Show("Coming soon.");
+            }
+            
+        }
+
+        private void StatGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (StatGrid.SelectedIndex > -1)
+            {
+                DeleteButton.IsEnabled = true;
+            }
+            else
+            {
+                DeleteButton.IsEnabled = false;
+            }
         }
     }
 }
