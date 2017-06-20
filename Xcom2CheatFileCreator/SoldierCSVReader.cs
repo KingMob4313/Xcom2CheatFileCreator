@@ -29,9 +29,10 @@ namespace Xcom2CheatFileCreator
                         currentSoldier.FirstName = csv.GetField<string>(0).TrimEnd();
                         currentSoldier.LastName = csv.GetField<string>(1).TrimEnd();
                         Debug.WriteLine(currentSoldier.FirstName + " " + currentSoldier.LastName);
-                        string grabbedClass = csv.GetField<string>(2).TrimEnd(); ;
-                        LWClass colorValue = (LWClass)Enum.Parse(typeof(LWClass), grabbedClass);
-                        currentSoldier.SoldierClass = colorValue;
+                        //string grabbedClass = csv.GetField<string>(2).TrimEnd();
+                        //LWClass colorValue = (LWClass)Enum.Parse(typeof(LWClass), grabbedClass);
+                        //currentSoldier.SoldierClass = colorValue;
+                        currentSoldier.SoldierClass = csv.GetField<string>(2).TrimEnd();
                         int tempStrength;
                         int.TryParse(csv.GetField<string>(3).TrimEnd(), out tempStrength);
                         currentSoldier.Strength = tempStrength > 50 ? tempStrength : 50;

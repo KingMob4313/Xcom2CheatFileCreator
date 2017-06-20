@@ -1,7 +1,17 @@
-﻿<Window x:Class="Xcom2CheatFileCreator.Settings"
+﻿<Controls:MetroWindow x:Class="Xcom2CheatFileCreator.Settings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Settings" Height="300" Width="300">
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        x:Name="SettingsWindow"
+        Title="Settings" Height="330" Width="450" Loaded="Settings_Loaded" Closed="SettingsWindow_Closed">
     <Grid>
+        <Button Content="Add Class" HorizontalAlignment="Left" Margin="279,10,0,0" VerticalAlignment="Top" Width="124" FontWeight="900" Foreground="White" Background="Red" Click="AddButton_Click" />
+        <Button Content="Export Class CSV" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,7" Width="124" FontWeight="900" Foreground="White" Background="Green" Click="CSVSaveButton_Click" />
+        <Button Content="Delete Class" x:Name="DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="308,0,0,230" Width="124" Click="DeleteButton_Click" />
+        <TextBox x:Name="ClassTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" Margin="54,10,0,0"/>
+        <Label Content="Class:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <ListBox BorderThickness="1px" x:Name="ClassListBox" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="422" Margin="10,74,0,0"/>
+        <Image HorizontalAlignment="Left" Height="24" Margin="406,10,0,0" VerticalAlignment="Top" Width="24" Source="Nuvola_apps_question.png" MouseDown="Image_MouseDown"/>
+        <Button Content="Reset Classes" x:Name="DeleteButton_Copy" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,230" Width="124" Click="ResetClassesButton_Click" />
     </Grid>
-</Window>
+</Controls:MetroWindow>

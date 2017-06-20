@@ -53,7 +53,7 @@ namespace Xcom2CheatFileCreator
                 textFor.AppendLine("SetSoldierStat eStat_Defense " + s.Dodge + " " + s.FirstName + " " + s.LastName);
                 textFor.AppendLine("SetSoldierStat eStat_ArmorMitigation " + s.Armor + " " + s.FirstName + " " + s.LastName);
                 textFor.AppendLine("; ---Other Stats---");
-                string modifiedHackSkill = (s.SoldierClass == LWClass.Specialist ? (s.Hack * 2) : s.Hack).ToString();
+                string modifiedHackSkill = (s.SoldierClass == "Specialist" ? (s.Hack * 2) : s.Hack).ToString();
                 textFor.AppendLine("SetSoldierStat eStat_Hacking " + modifiedHackSkill + " " + s.FirstName + " " + s.LastName);
                 //textFor.AppendLine("SetSoldierStat eStat_UtilityItems " + s.UtilitySlots + " " + s.FirstName + " " + s.LastName);
                 //textFor.AppendLine("SetSoldierStat eStat_BackpackSize 4" + " " + s.FirstName + " " + s.LastName);

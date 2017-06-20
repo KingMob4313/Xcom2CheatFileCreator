@@ -14,8 +14,10 @@ namespace Xcom2CheatFileCreator
     public partial class MainWindow : MetroWindow
     {
         private List<Soldier> soldierList = new List<Soldier>();
+        public List<string> classList = new List<string>();
 
         private string inputFileName = "cheatfiletemplate.csv";
+        private string classFileName = "soldierClass.csv";
         private int levelup = 0;
 
         public MainWindow()
@@ -26,6 +28,9 @@ namespace Xcom2CheatFileCreator
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             soldierList = SoldierCSVReader.ProcessSoldierFile(soldierList, inputFileName, StatGrid);
+            classList = LoadSettingsCsv(classFileName);
+            ClassComboBox.ItemsSource = classList;
+            //Readonly the soldier column
         }
 
         private void LoadCsvButton_Click(object sender, RoutedEventArgs e)
@@ -83,7 +88,21 @@ namespace Xcom2CheatFileCreator
 
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            MessageBox.Show("Coming soon.");
+            //MessageBox.Show("Coming soon.");
+            Settings sw = new Settings();
+            sw.classList = classList;
+            sw.ShowDialog();
+            if(Application.Current.Resources["ClassList"] != null)
+            {
+                classList = (List<string>)Application.Current.Resources["ClassList"];
+            }
+            ClassComboBox.ItemsSource = classList;
+            ClassComboBox.Items.Refresh();
+        }
+
+        private void Question_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Use this control to change a soldier's class easily", "Notice");
         }
 
         private void StatGrid_SelectedCellsChanged(object sender, System.Windows.Controls.SelectedCellsChangedEventArgs e)
@@ -99,7 +118,7 @@ namespace Xcom2CheatFileCreator
             }
             else
             {
-                //MessageBox.Show("Coming soon.");
+                System.Media.SystemSounds.Exclamation.Play();
             }
             
         }
@@ -115,5 +134,77 @@ namespace Xcom2CheatFileCreator
                 DeleteButton.IsEnabled = false;
             }
         }
+
+        private List<string> LoadSettingsCsv(string inputFileName)
+        {
+            List<string> currentClassList = new List<string>();
+
+            try
+            {
+                var streamReader = new StreamReader(inputFileName);
+                var csv = new CsvReader(streamReader);
+
+                while (csv.Read())
+                {
+                    if (!string.IsNullOrWhiteSpace(csv.GetField<string>(0)))
+                    {
+                        string currentClass = string.Empty;
+                        currentClass = csv.GetField<string>(0).TrimEnd();
+
+                        currentClassList.Add(currentClass);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                return currentClassList;
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message, "Error");
+            }
+
+            return null;
+        }
+
+        private void SetSoldierClass_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(ClassComboBox.SelectedIndex > -1)
+            {
+                Soldier soldierToChange = new Soldier();
+                soldierToChange = (Soldier)StatGrid.SelectedItems[0];
+                soldierToChange.SoldierClass = ClassComboBox.SelectedValue.ToString();
+                StatGrid.SelectedItems[0] = soldierToChange;
+                StatGrid.Items.Refresh();
+            }
+        }
+
+        private void LevelSet_LostFocus(object sender, RoutedEventArgs e)
+        {
+            int currentLevel = 2;
+
+            int.TryParse(LevelSet.Text, out currentLevel);
+            if(currentLevel < 2)
+            {
+                MessageBox.Show("Level cannot be set to below 2.", "Error");
+                currentLevel = 2;
+                LevelSet.Text = currentLevel.ToString();
+            }
+        }
+
+        private void LocationOverride_Checked(object sender, RoutedEventArgs e)
+        {
+            if(LocationOverride.IsChecked == true)
+            {
+                DriveLetterSet.IsEnabled = false;
+            }
+            else
+            {
+                DriveLetterSet.IsEnabled = true;
+            }
+        }
+
+
     }
 }

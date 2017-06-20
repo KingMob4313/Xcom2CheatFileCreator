@@ -12,7 +12,8 @@ namespace Xcom2CheatFileCreator
 
         public String LastName { get; set; }
 
-        public LWClass SoldierClass { get; set; }
+        //public LWClass SoldierClass { get; set; }
+        public string SoldierClass { get; set; }
 
         public int Strength { get; set; }
 
@@ -80,7 +81,8 @@ namespace Xcom2CheatFileCreator
             Soldier currentSoldier = new Soldier();
             currentSoldier.FirstName = "Jay";
             currentSoldier.LastName = "Doe";
-            currentSoldier.SoldierClass = LWClass.Grenadier;
+            //currentSoldier.SoldierClass = LWClass.Grenadier;
+            currentSoldier.SoldierClass = "Grenadier";
             currentSoldier.Strength = 10;
             currentSoldier.Health = 5;
             currentSoldier.Mobility = 13;
