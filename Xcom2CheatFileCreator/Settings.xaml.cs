@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using WinForms = System.Windows.Forms;
 
 namespace Xcom2CheatFileCreator
 {
@@ -14,12 +15,14 @@ namespace Xcom2CheatFileCreator
     public partial class Settings : MetroWindow
     {
         public List<string> classList = new List<string>();
+        private string Xcom2Location = string.Empty;
 
-        public Settings()
+        public Settings(string InitialLocation)
         {
             InitializeComponent();
+            Xcom2Location = InitialLocation;
+            Xcom2LocationTextBox.Text = Xcom2Location;
         }
-
 
         private void Settings_Loaded(object sender, RoutedEventArgs e)
         {
@@ -32,17 +35,6 @@ namespace Xcom2CheatFileCreator
         {
             classList.Remove(ClassListBox.SelectedValue.ToString());
             ClassListBox.Items.Refresh();
-        }
-
-        private void SettingsWindow_Closed(object sender, EventArgs e)
-        {
-
-            Application.Current.Resources["ClassList"] = classList;
-        }
-
-        private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Enter new class name as what it's referenced in the mod.", "Notice");
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -79,6 +71,22 @@ namespace Xcom2CheatFileCreator
                 ClassListBox.ItemsSource = classList;
                 ClassListBox.Items.Refresh();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WinForms.FolderBrowserDialog fbd = new WinForms.FolderBrowserDialog();
+            WinForms.DialogResult result = fbd.ShowDialog();
+            if (result == WinForms.DialogResult.OK)
+            {
+                Xcom2LocationTextBox.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void SettingsWindow_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Resources["ClassList"] = classList;
+            Application.Current.Resources["Xcom2Location"] = Xcom2LocationTextBox.Text;
         }
     }
 }

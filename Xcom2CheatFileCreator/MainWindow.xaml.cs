@@ -19,7 +19,7 @@ namespace Xcom2CheatFileCreator
         private string inputFileName = "cheatfiletemplate.csv";
         private string classFileName = "soldierClass.csv";
         private int levelup = 0;
-
+        private string XcomDirectoryOverride = string.Empty;
         public MainWindow()
         {
             InitializeComponent();
@@ -59,8 +59,16 @@ namespace Xcom2CheatFileCreator
             int.TryParse(LevelSet.Text, out levelup);
 
             inputFileName = "cheat.txt";
-            char driveLetter = Convert.ToChar(DriveLetterSet.Text);
-            soldierList = SoldierTextFileGenerator.ProcessSoldierFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked);
+            char driveLetter = Convert.ToChar(DriveLetterSetTextBox.Text);
+            if(LocationOverride.IsChecked == true)
+            {
+
+            }
+            else
+            {
+                soldierList = SoldierTextFileGenerator.ProcessSoldierFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked);
+            }
+            
         }
 
         private void AddSoldierButton_Click(object sender, RoutedEventArgs e)
@@ -89,21 +97,28 @@ namespace Xcom2CheatFileCreator
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             //MessageBox.Show("Coming soon.");
-            Settings sw = new Settings();
+            Settings sw = new Settings(DriveLetterSetTextBox.Text.TrimEnd() + @":\Program Files (x86)\Steam\SteamApps\common\XCOM 2\Binaries");
             sw.classList = classList;
             sw.ShowDialog();
             if(Application.Current.Resources["ClassList"] != null)
             {
                 classList = (List<string>)Application.Current.Resources["ClassList"];
             }
+             if(Application.Current.Resources["Xcom2Location"] != null)
+            {
+                XcomDirectoryOverride = Application.Current.Resources["Xcom2Location"].ToString();
+                
+            }
+             else
+            {
+
+                LocationOverride.IsChecked = false;
+            }
             ClassComboBox.ItemsSource = classList;
             ClassComboBox.Items.Refresh();
         }
 
-        private void Question_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Use this control to change a soldier's class easily", "Notice");
-        }
+
 
         private void StatGrid_SelectedCellsChanged(object sender, System.Windows.Controls.SelectedCellsChangedEventArgs e)
         {
@@ -197,14 +212,22 @@ namespace Xcom2CheatFileCreator
         {
             if(LocationOverride.IsChecked == true)
             {
-                DriveLetterSet.IsEnabled = false;
+                DriveLetterSetTextBox.IsEnabled = false;
             }
             else
             {
-                DriveLetterSet.IsEnabled = true;
+                DriveLetterSetTextBox.IsEnabled = true;
             }
         }
 
+        private void LW2_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //MessageBox.Show("Adds 'LWS_' prefix to all base class names except Psionics. ", "Notice");
+        }
 
+        private void Question_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //MessageBox.Show("Change the selected soldier's class to the selected class.", "Notice");
+        }
     }
 }

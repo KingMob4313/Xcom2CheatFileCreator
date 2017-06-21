@@ -15,6 +15,75 @@ namespace Xcom2CheatFileCreator
 
         public static List<Soldier> ProcessSoldierFile(List<Soldier> soldierListInstance, string outputFileName, int level, char driveLetter, bool? isLongWar2)
         {
+            StringBuilder textFor = ComposeCheatText(soldierListInstance, level, isLongWar2);
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+
+                String initialDirectory = driveLetter + @":\Program Files (x86)\Steam\SteamApps\common\XCOM 2\Binaries";
+                if (!Directory.Exists(initialDirectory))
+                {
+                    initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    MessageBox.Show("Overridden Directory is incorrect./r/n Using current My Documents Folder.", "Warning");
+                }
+                sfd.InitialDirectory = initialDirectory;
+                sfd.FileName = outputFileName;
+                sfd.Filter = "Text documents (.txt)|*.txt"; //filter files by extension
+                Nullable<bool> result = sfd.ShowDialog();
+
+                if (result == true)
+                {
+                    StreamWriter nsw = new StreamWriter(sfd.FileName);
+                    nsw.Write(textFor.ToString());
+                    nsw.Close();
+                    MessageBox.Show("File Created Successfully.");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error Generating cheat file");
+            }
+
+            return soldierListInstance;
+        }
+
+        public static List<Soldier> ProcessSoldierFile(List<Soldier> soldierListInstance, string outputFileName, int level, string overrideDirectory, bool? isLongWar2)
+        {
+            StringBuilder textFor = ComposeCheatText(soldierListInstance, level, isLongWar2);
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+
+                String initialDirectory = overrideDirectory;
+                if (!Directory.Exists(initialDirectory))
+                {
+                    initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    MessageBox.Show("Overridden Directory is incorrect./r/n Using current My Documents Folder.", "Warning");
+                }
+                sfd.InitialDirectory = initialDirectory;
+                sfd.FileName = outputFileName;
+                sfd.Filter = "Text documents (.txt)|*.txt"; //filter files by extension
+                Nullable<bool> result = sfd.ShowDialog();
+
+                if (result == true)
+                {
+                    StreamWriter nsw = new StreamWriter(sfd.FileName);
+                    nsw.Write(textFor.ToString());
+                    nsw.Close();
+                    MessageBox.Show("File Created Successfully.");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error Generating cheat file. /r/n Cheat file not generated.");
+            }
+
+            return soldierListInstance;
+        }
+
+
+        private static StringBuilder ComposeCheatText(List<Soldier> soldierListInstance, int level, bool? isLongWar2)
+        {
             StringBuilder textFor = new StringBuilder();
             textFor.AppendLine("; ---Date Generated : " + DateTime.Now.ToShortDateString() + "---");
             foreach (Soldier s in soldierListInstance)
@@ -53,8 +122,15 @@ namespace Xcom2CheatFileCreator
                 textFor.AppendLine("SetSoldierStat eStat_Defense " + s.Dodge + " " + s.FirstName + " " + s.LastName);
                 textFor.AppendLine("SetSoldierStat eStat_ArmorMitigation " + s.Armor + " " + s.FirstName + " " + s.LastName);
                 textFor.AppendLine("; ---Other Stats---");
-                string modifiedHackSkill = (s.SoldierClass == "Specialist" ? (s.Hack * 2) : s.Hack).ToString();
-                textFor.AppendLine("SetSoldierStat eStat_Hacking " + modifiedHackSkill + " " + s.FirstName + " " + s.LastName);
+                if (1 == 1)
+                {
+                    string modifiedHackSkill = (s.SoldierClass == "Specialist" ? (s.Hack * 2) : s.Hack).ToString();
+                    textFor.AppendLine("SetSoldierStat eStat_Hacking " + modifiedHackSkill + " " + s.FirstName + " " + s.LastName);
+                }
+                else
+                {
+                    textFor.AppendLine("SetSoldierStat eStat_Hacking " + s.Hack + " " + s.FirstName + " " + s.LastName);
+                }
                 //textFor.AppendLine("SetSoldierStat eStat_UtilityItems " + s.UtilitySlots + " " + s.FirstName + " " + s.LastName);
                 //textFor.AppendLine("SetSoldierStat eStat_BackpackSize 4" + " " + s.FirstName + " " + s.LastName);
                 //textFor.AppendLine("SetSoldierStat eStat_CombatSims 2" + " " + s.FirstName + " " + s.LastName);
@@ -78,34 +154,8 @@ namespace Xcom2CheatFileCreator
             {
                 textFor.AppendLine("LevelUpBarracks " + level.ToString());
             }
-            try
-            {
-                SaveFileDialog sfd = new SaveFileDialog();
 
-                String initialDirectory = driveLetter + @":\Program Files (x86)\Steam\SteamApps\common\XCOM 2\Binaries";
-                if (!Directory.Exists(initialDirectory))
-                {
-                    initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                }
-                sfd.InitialDirectory = initialDirectory;
-                sfd.FileName = outputFileName;
-                sfd.Filter = "Text documents (.txt)|*.txt"; //filter files by extension
-                Nullable<bool> result = sfd.ShowDialog();
-
-                if (result == true)
-                {
-                    StreamWriter nsw = new StreamWriter(sfd.FileName);
-                    nsw.Write(textFor.ToString());
-                    nsw.Close();
-                    MessageBox.Show("File Created Successfully.");
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error Generating cheat file");
-            }
-
-            return soldierListInstance;
+            return textFor;
         }
 
         public static void WriteCSVFile(SaveFileDialog csvsfd, List<Soldier> soldierList)
