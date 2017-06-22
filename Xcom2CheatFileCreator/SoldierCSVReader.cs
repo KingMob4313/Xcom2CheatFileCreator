@@ -59,6 +59,9 @@ namespace Xcom2CheatFileCreator
                     }
                 }
                 currentDataGrid.ItemsSource = currentSoldierListInstance;
+                streamReader.Close();
+                streamReader.Dispose();
+                csv.Dispose();
                 return currentSoldierListInstance;
             }
             catch (Exception x)

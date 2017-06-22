@@ -20,6 +20,7 @@ namespace Xcom2CheatFileCreator
         private string classFileName = "soldierClass.csv";
         private int levelup = 0;
         private string XcomDirectoryOverride = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -60,15 +61,13 @@ namespace Xcom2CheatFileCreator
 
             inputFileName = "cheat.txt";
             char driveLetter = Convert.ToChar(DriveLetterSetTextBox.Text);
-            if(LocationOverride.IsChecked == true)
+            if (LocationOverride.IsChecked == true)
             {
-
             }
             else
             {
                 soldierList = SoldierTextFileGenerator.ProcessSoldierFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked);
             }
-            
         }
 
         private void AddSoldierButton_Click(object sender, RoutedEventArgs e)
@@ -92,33 +91,27 @@ namespace Xcom2CheatFileCreator
             }
         }
 
-
-
         private void Image_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             //MessageBox.Show("Coming soon.");
             Settings sw = new Settings(DriveLetterSetTextBox.Text.TrimEnd() + @":\Program Files (x86)\Steam\SteamApps\common\XCOM 2\Binaries");
             sw.classList = classList;
             sw.ShowDialog();
-            if(Application.Current.Resources["ClassList"] != null)
+            if (Application.Current.Resources["ClassList"] != null)
             {
                 classList = (List<string>)Application.Current.Resources["ClassList"];
             }
-             if(Application.Current.Resources["Xcom2Location"] != null)
+            if (Application.Current.Resources["Xcom2Location"] != null)
             {
                 XcomDirectoryOverride = Application.Current.Resources["Xcom2Location"].ToString();
-                
             }
-             else
+            else
             {
-
                 LocationOverride.IsChecked = false;
             }
             ClassComboBox.ItemsSource = classList;
             ClassComboBox.Items.Refresh();
         }
-
-
 
         private void StatGrid_SelectedCellsChanged(object sender, System.Windows.Controls.SelectedCellsChangedEventArgs e)
         {
@@ -126,7 +119,7 @@ namespace Xcom2CheatFileCreator
 
         private void DeleteSoldierButton_Click(object sender, RoutedEventArgs e)
         {
-            if(StatGrid.SelectedIndex > -1)
+            if (StatGrid.SelectedIndex > -1)
             {
                 soldierList.RemoveAt(StatGrid.SelectedIndex);
                 StatGrid.Items.Refresh();
@@ -135,7 +128,6 @@ namespace Xcom2CheatFileCreator
             {
                 System.Media.SystemSounds.Exclamation.Play();
             }
-            
         }
 
         private void StatGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -173,6 +165,9 @@ namespace Xcom2CheatFileCreator
                         return null;
                     }
                 }
+                streamReader.Close();
+                streamReader.Dispose();
+                csv.Dispose();
                 return currentClassList;
             }
             catch (Exception x)
@@ -185,7 +180,7 @@ namespace Xcom2CheatFileCreator
 
         private void SetSoldierClass_Button_Click(object sender, RoutedEventArgs e)
         {
-            if(ClassComboBox.SelectedIndex > -1)
+            if (ClassComboBox.SelectedIndex > -1)
             {
                 Soldier soldierToChange = new Soldier();
                 soldierToChange = (Soldier)StatGrid.SelectedItems[0];
@@ -200,7 +195,7 @@ namespace Xcom2CheatFileCreator
             int currentLevel = 2;
 
             int.TryParse(LevelSet.Text, out currentLevel);
-            if(currentLevel < 2)
+            if (currentLevel < 2)
             {
                 MessageBox.Show("Level cannot be set to below 2.", "Error");
                 currentLevel = 2;
@@ -210,7 +205,7 @@ namespace Xcom2CheatFileCreator
 
         private void LocationOverride_Checked(object sender, RoutedEventArgs e)
         {
-            if(LocationOverride.IsChecked == true)
+            if (LocationOverride.IsChecked == true)
             {
                 DriveLetterSetTextBox.IsEnabled = false;
             }

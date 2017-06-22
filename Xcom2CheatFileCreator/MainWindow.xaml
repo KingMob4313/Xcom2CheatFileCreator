@@ -5,29 +5,25 @@
         Title="XCom 2 - CSV to Cheatfile" Height="540" Width="900" Loaded="MetroWindow_Loaded">
     <DockPanel>
         <Grid Height="510" VerticalAlignment="Top" Background="#FFE5E5E5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="443*"/>
-                <ColumnDefinition Width="449*"/>
-            </Grid.ColumnDefinitions>
             <Button Content="Add Soldier" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Width="124" Click="AddSoldierButton_Click" />
             <Button Content="Load Soldier CSV File" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Width="150" Click="LoadCsvButton_Click" />
-            <Button Content="Generate Cheat File" HorizontalAlignment="Left" Margin="300,106,0,0" VerticalAlignment="Top" Width="139" FontWeight="900" Foreground="White" Background="Red" Click="GenerateFileButton_Click" Grid.Column="1" />
-            <Button Content="Export Soldier CSV" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="300,0,0,408" Width="139" FontWeight="900" Foreground="White" Background="Green" Click="ExportCSVButton_Click" Grid.Column="1" />
+            <Button Content="Generate Cheat File" HorizontalAlignment="Right" Margin="0,106,10,0" VerticalAlignment="Top" Width="139" FontWeight="900" Foreground="White" Background="Red" Click="GenerateFileButton_Click" Grid.Column="1" />
+            <Button Content="Export Soldier CSV" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,408" Width="139" FontWeight="900" Foreground="White" Background="Green" Click="ExportCSVButton_Click" Grid.Column="1" />
             <DataGrid  x:Name="StatGrid" Margin="10,144,10,70" IsReadOnly="False" CanUserAddRows="False" FrozenColumnCount="3" SelectedCellsChanged="StatGrid_SelectedCellsChanged" SelectionChanged="StatGrid_SelectionChanged" Grid.ColumnSpan="2" />
-            <TextBox HorizontalAlignment="Left"  x:Name="LevelSet" Height="23" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="40" Margin="94,15,0,0" LostFocus="LevelSet_LostFocus" />
-            <Label Content="Level:" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="75" Height="23" />
-            <TextBox HorizontalAlignment="Left"  x:Name="DriveLetterSetTextBox" Height="23" MaxLength="1" TextWrapping="Wrap" Text="C" VerticalAlignment="Top" Width="40" Margin="94,44,0,0" />
-            <Label Content="Steam Drive:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="75" Height="23" />
-            <CheckBox Content="Long War 2 Class Prefix" x:Name="LongWarCheckBox" IsChecked="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="144,20,0,0" />
+            <TextBox HorizontalAlignment="Left"  x:Name="LevelSet" Height="23" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="40" Margin="106,15,0,0" LostFocus="LevelSet_LostFocus" />
+            <Label Content="Level:" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top" Width="91" Height="23" FontWeight="Bold" />
+            <TextBox HorizontalAlignment="Left"  x:Name="DriveLetterSetTextBox" Height="23" MaxLength="1" TextWrapping="Wrap" Text="C" VerticalAlignment="Top" Width="40" Margin="106,44,0,0" />
+            <Label Content="Steam Drive:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="91" Height="23" FontWeight="Bold" />
+            <CheckBox Content="Long War 2 Class Prefix" x:Name="LongWarCheckBox" IsChecked="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="156,20,0,0" FontWeight="Bold" />
 
-            <Image Margin="409,10,10,470" Width="30" Height="30" Source="Nuvola_apps_kservices.png" Stretch="Fill" MouseDown="Image_MouseDown" RenderTransformOrigin="0.467,0.067" Grid.Column="1" />
-            <Button Content="Delete Soldier" x:Name="DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="315,0,0,10" Width="124" Click="DeleteSoldierButton_Click" Grid.Column="1" />
-            <Label Content="Selected Soldier Class:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,107,0,0"/>
-            <ComboBox x:Name="ClassComboBox"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Margin="144,107,0,0"/>
-            <Button x:Name="SetSoldierClass" Content="Change Soldier Class" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" Margin="369,106,0,0" Click="SetSoldierClass_Button_Click" Grid.ColumnSpan="2"/>
-            <Image HorizontalAlignment="Left" Height="24" ToolTip="Change the selected soldier's class to the selected class." Width="24" Margin="65,107,0,0" VerticalAlignment="Top" Source="Nuvola_apps_question.png" MouseDown="Question_MouseDown" Grid.Column="1"/>
-            <CheckBox x:Name="LocationOverride" Content="Override Xcom2 Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="144,47,0,0" Checked="LocationOverride_Checked" Unloaded="LocationOverride_Checked"/>
-            <Image HorizontalAlignment="Left" Height="24" ToolTip="Adds 'LWS_' prefix to all base class names except Psionics."  Width="24" Margin="296,18,0,0" VerticalAlignment="Top" Source="Nuvola_apps_question.png" MouseDown="LW2_MouseDown"/>
+            <Image Margin="409,10,10,470" Width="30" Height="30" HorizontalAlignment="Right" Source="Nuvola_apps_kservices.png" Stretch="Fill" MouseDown="Image_MouseDown" RenderTransformOrigin="0.467,0.067" Grid.Column="1" />
+            <Button Content="Delete Soldier" x:Name="DeleteButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Width="124" Click="DeleteSoldierButton_Click" />
+            <Label Content="Selected Soldier Class:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,107,0,0" FontWeight="Bold" />
+            <ComboBox x:Name="ClassComboBox"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="220" Margin="151,107,0,0" />
+            <Button x:Name="SetSoldierClass" Content="Change Soldier Class" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" Margin="376,106,0,0" Click="SetSoldierClass_Button_Click" />
+            <Image HorizontalAlignment="Left" Height="24" ToolTip="Change the selected soldier's class to the selected class." Width="24" Margin="515,107,0,0" VerticalAlignment="Top" Source="Nuvola_apps_question.png" MouseDown="Question_MouseDown" />
+            <CheckBox x:Name="LocationOverride" Content="Override Xcom2 Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="156,47,0,0" Checked="LocationOverride_Checked" Unloaded="LocationOverride_Checked" FontWeight="Bold" />
+            <Image HorizontalAlignment="Left" Height="24" ToolTip="Adds 'LWS_' prefix to all base class names except Psionics."  Width="24" Margin="317,18,0,0" VerticalAlignment="Top" Source="Nuvola_apps_question.png" MouseDown="LW2_MouseDown" />
         </Grid>
     </DockPanel>
 </Controls:MetroWindow>

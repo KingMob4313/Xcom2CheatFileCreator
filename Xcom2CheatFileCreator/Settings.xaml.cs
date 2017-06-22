@@ -47,7 +47,7 @@ namespace Xcom2CheatFileCreator
             ClassTextBox.Text = string.Empty;
         }
 
-        private void CSVSaveButton_Click(object sender, RoutedEventArgs e)
+        private void CSVClassSaveButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -72,7 +72,8 @@ namespace Xcom2CheatFileCreator
             {
                 MessageBox.Show(ex.Message.ToString(), "Error");
             }
-            classList = SoldierClass.LoadSettingsCsv("settings.csv");
+            settingList = SoldierClass.LoadSettingsCsv("settings.csv");
+            //ClassListBox.Items.Refresh();
             Xcom2LocationTextBox.Text = settingList[0].ToString();
         }
 

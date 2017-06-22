@@ -1,11 +1,11 @@
-﻿using Microsoft.Win32;
+﻿using CsvHelper;
+using MahApps.Metro.Controls;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
-using CsvHelper;
-using MahApps.Metro.Controls;
 
 namespace Xcom2CheatFileCreator
 {
@@ -24,7 +24,7 @@ namespace Xcom2CheatFileCreator
                 if (!Directory.Exists(initialDirectory))
                 {
                     initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                    MessageBox.Show("Overridden Directory is incorrect./r/n Using current My Documents Folder.", "Warning");
+                    MessageBox.Show("Overridden Directory is incorrect.\r\nUsing current My Documents Folder.", "Warning");
                 }
                 sfd.InitialDirectory = initialDirectory;
                 sfd.FileName = outputFileName;
@@ -80,7 +80,6 @@ namespace Xcom2CheatFileCreator
 
             return soldierListInstance;
         }
-
 
         private static StringBuilder ComposeCheatText(List<Soldier> soldierListInstance, int level, bool? isLongWar2)
         {
@@ -167,7 +166,9 @@ namespace Xcom2CheatFileCreator
             {
                 csvW.WriteRecord(item);
             }
+            tr.Close();
             csvW.Dispose();
+            tr.Dispose();
         }
     }
 }

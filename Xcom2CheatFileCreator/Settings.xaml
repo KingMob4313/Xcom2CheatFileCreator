@@ -8,11 +8,11 @@
         <TabControl Width="444" Margin="0,0,0,0">
             <TabItem Header="General">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="XCom 2 Directory:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" />
-                    <TextBox x:Name="Xcom2LocationTextBox"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="232" Margin="121,11,0,0" />
+                    <Label Content="XCom 2 Directory:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold" />
+                    <TextBox x:Name="Xcom2LocationTextBox"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="225" Margin="128,10,0,0" />
 
-                    <CheckBox Content="Adjust Attributes by Class" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,42,0,0" />
-                    <Button Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="358,11,0,0" Click="Button_Click" />
+                    <CheckBox Content="Adjust Attributes by Class" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,42,0,0" FontWeight="Bold" />
+                    <Button Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="358,9,0,0" Click="Button_Click" />
                     <Button Content="Export Settings CSV" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,7" Width="136" FontWeight="900" Foreground="White" Background="Green" Click="CSVSettingsSaveButton_Click" />
                 </Grid>
             </TabItem>
@@ -23,10 +23,10 @@
                         <ColumnDefinition Width="203*" />
                     </Grid.ColumnDefinitions>
                     <Button Content="Add Class" HorizontalAlignment="Left" Margin="44,10,0,0" VerticalAlignment="Top" Width="124" FontWeight="900" Foreground="White" Background="Red" Click="AddButton_Click" Grid.Column="1" />
-                    <Button Content="Export Class CSV" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,7" Width="124" FontWeight="900" Foreground="White" Background="Green" Click="CSVSaveButton_Click" />
+                    <Button Content="Export Class CSV" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,7" Width="124" FontWeight="900" Foreground="White" Background="Green" Click="CSVClassSaveButton_Click" />
                     <Button Content="Delete Class" x:Name="DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="68,46,0,0" Width="124" Click="DeleteButton_Click" Grid.Column="1" />
                     <TextBox x:Name="ClassTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" Margin="54,10,0,0" Grid.ColumnSpan="2" />
-                    <Label Content="Class:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" />
+                    <Label Content="Class:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold" />
                     <ListBox BorderThickness="1px" x:Name="ClassListBox" HorizontalAlignment="Left" Height="186" VerticalAlignment="Top" Width="422" Margin="10,78,0,0" Grid.ColumnSpan="2" />
                     <Image HorizontalAlignment="Left" Height="24" Margin="171,10,0,0" ToolTip="Enter new class name as it is referenced in the mod." VerticalAlignment="Top" Width="24" Source="Nuvola_apps_question.png" Grid.Column="1" />
                     <Button Content="Reset Classes" x:Name="DeleteButton_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,46,0,0" Width="124" Click="ResetClassesButton_Click" />

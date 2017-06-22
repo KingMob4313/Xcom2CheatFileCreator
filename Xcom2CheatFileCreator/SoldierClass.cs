@@ -24,7 +24,9 @@ namespace Xcom2CheatFileCreator
                 csvW.WriteField(item);
                 csvW.NextRecord();
             }
+            tr.Close();
             csvW.Dispose();
+            tr.Dispose();
         }
 
         public static List<string> LoadSettingsCsv(string inputFileName)
@@ -50,6 +52,9 @@ namespace Xcom2CheatFileCreator
                         return null;
                     }
                 }
+                streamReader.Close();
+                streamReader.Dispose();
+                csv.Dispose();
                 return currentClassList;
             }
             catch (Exception x)
