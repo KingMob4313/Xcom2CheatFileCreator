@@ -13,6 +13,7 @@
 
                     <CheckBox Content="Adjust Attributes by Class" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,42,0,0" />
                     <Button Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="358,11,0,0" Click="Button_Click" />
+                    <Button Content="Export Settings CSV" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,7" Width="136" FontWeight="900" Foreground="White" Background="Green" Click="CSVSettingsSaveButton_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="Class">

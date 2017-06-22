@@ -15,6 +15,7 @@ namespace Xcom2CheatFileCreator
     public partial class Settings : MetroWindow
     {
         public List<string> classList = new List<string>();
+        public List<string> settingList = new List<string>();
         private string Xcom2Location = string.Empty;
 
         public Settings(string InitialLocation)
@@ -28,7 +29,9 @@ namespace Xcom2CheatFileCreator
         {
             //string folder = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             classList = SoldierClass.LoadSettingsCsv("soldierClass.csv");
+            settingList = SoldierClass.LoadSettingsCsv("settings.csv");
             ClassListBox.ItemsSource = (classList);
+            Xcom2LocationTextBox.Text = settingList[0].ToString();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -57,6 +60,20 @@ namespace Xcom2CheatFileCreator
             classList = SoldierClass.LoadSettingsCsv("soldierClass.csv");
             ClassListBox.ItemsSource = classList;
             ClassListBox.Items.Refresh();
+        }
+
+        private void CSVSettingsSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SoldierClass.WriteCSVFile(settingList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Error");
+            }
+            classList = SoldierClass.LoadSettingsCsv("settings.csv");
+            Xcom2LocationTextBox.Text = settingList[0].ToString();
         }
 
         private void ResetClassesButton_Click(object sender, RoutedEventArgs e)
