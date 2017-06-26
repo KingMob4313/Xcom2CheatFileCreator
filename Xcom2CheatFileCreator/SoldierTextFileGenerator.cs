@@ -13,7 +13,7 @@ namespace Xcom2CheatFileCreator
     {
         public static string PsiClassName = "PsiOperative";
 
-        public static List<Soldier> ProcessSoldierFile(List<Soldier> soldierListInstance, string outputFileName, int level, char driveLetter, bool? isLongWar2)
+        public static List<Soldier> GenerateCheatFile(List<Soldier> soldierListInstance, string outputFileName, int level, char driveLetter, bool? isLongWar2)
         {
             StringBuilder textFor = ComposeCheatText(soldierListInstance, level, isLongWar2);
             try
@@ -47,7 +47,7 @@ namespace Xcom2CheatFileCreator
             return soldierListInstance;
         }
 
-        public static List<Soldier> ProcessSoldierFile(List<Soldier> soldierListInstance, string outputFileName, int level, string overrideDirectory, bool? isLongWar2)
+        public static List<Soldier> GenerateCheatFile(List<Soldier> soldierListInstance, string outputFileName, int level, string overrideDirectory, bool? isLongWar2)
         {
             StringBuilder textFor = ComposeCheatText(soldierListInstance, level, isLongWar2);
             try
@@ -149,9 +149,9 @@ namespace Xcom2CheatFileCreator
                 textFor.AppendLine("; ---NEXT SOLDIER PLEASE---");
                 textFor.AppendLine(";");
             }
-            if (level > 0)
+            if (level > 2)
             {
-                textFor.AppendLine("LevelUpBarracks " + level.ToString());
+                textFor.AppendLine("LevelUpBarracks " + (level - 2).ToString());
             }
 
             return textFor;

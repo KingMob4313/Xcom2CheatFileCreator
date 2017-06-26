@@ -63,10 +63,11 @@ namespace Xcom2CheatFileCreator
             char driveLetter = Convert.ToChar(DriveLetterSetTextBox.Text);
             if (LocationOverride.IsChecked == true)
             {
+                soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, XcomDirectoryOverride, LongWarCheckBox.IsChecked);
             }
             else
             {
-                soldierList = SoldierTextFileGenerator.ProcessSoldierFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked);
+                soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked);
             }
         }
 
