@@ -63,11 +63,11 @@ namespace Xcom2CheatFileCreator
             char driveLetter = Convert.ToChar(DriveLetterSetTextBox.Text);
             if (LocationOverride.IsChecked == true)
             {
-                soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, XcomDirectoryOverride, LongWarCheckBox.IsChecked);
+                soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, XcomDirectoryOverride, LongWarCheckBox.IsChecked, RichardsClassesCheckBox.IsChecked);
             }
             else
             {
-                soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked);
+                soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked, RichardsClassesCheckBox.IsChecked);
             }
         }
 
@@ -224,6 +224,30 @@ namespace Xcom2CheatFileCreator
         private void Question_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             //MessageBox.Show("Change the selected soldier's class to the selected class.", "Notice");
+        }
+
+        private void RichardsClassesCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            classList.Clear();
+            if (RichardsClassesCheckBox.IsChecked == true)
+            {
+                foreach (object item in Enum.GetValues(typeof(WotCClass)))
+                {
+                    classList.Add(item.ToString());
+                }
+            }
+            else
+            {
+                //{
+                //    classList.Clear();
+                //    foreach (object item in Enum.GetValues(typeof(LWClass)))
+                //    {
+                //        classList.Add(item.ToString());
+                //    }
+                //    ClassListBox.ItemsSource = classList;
+                //    ClassListBox.Items.Refresh();
+                //}
+            }
         }
     }
 }

@@ -13,9 +13,9 @@ namespace Xcom2CheatFileCreator
     {
         public static string PsiClassName = "PsiOperative";
 
-        public static List<Soldier> GenerateCheatFile(List<Soldier> soldierListInstance, string outputFileName, int level, char driveLetter, bool? isLongWar2)
+        public static List<Soldier> GenerateCheatFile(List<Soldier> soldierListInstance, string outputFileName, int level, char driveLetter, bool? isLongWar2, bool? isRichards)
         {
-            StringBuilder textFor = ComposeCheatText(soldierListInstance, level, isLongWar2);
+            StringBuilder textFor = ComposeCheatText(soldierListInstance, level, isLongWar2, isRichards);
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
@@ -47,9 +47,9 @@ namespace Xcom2CheatFileCreator
             return soldierListInstance;
         }
 
-        public static List<Soldier> GenerateCheatFile(List<Soldier> soldierListInstance, string outputFileName, int level, string overrideDirectory, bool? isLongWar2)
+        public static List<Soldier> GenerateCheatFile(List<Soldier> soldierListInstance, string outputFileName, int level, string overrideDirectory, bool? isLongWar2, bool? isRichards)
         {
-            StringBuilder textFor = ComposeCheatText(soldierListInstance, level, isLongWar2);
+            StringBuilder textFor = ComposeCheatText(soldierListInstance, level, isLongWar2, isRichards);
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
@@ -81,7 +81,7 @@ namespace Xcom2CheatFileCreator
             return soldierListInstance;
         }
 
-        private static StringBuilder ComposeCheatText(List<Soldier> soldierListInstance, int level, bool? isLongWar2)
+        private static StringBuilder ComposeCheatText(List<Soldier> soldierListInstance, int level, bool? isLongWar2, bool? isRichards)
         {
             StringBuilder textFor = new StringBuilder();
             textFor.AppendLine("; ---Date Generated : " + DateTime.Now.ToShortDateString() + "---");
@@ -89,18 +89,26 @@ namespace Xcom2CheatFileCreator
             {
                 string composedClassName = string.Empty;
                 string classPrefix = string.Empty;
+                string classSuffix = string.Empty;
                 if (isLongWar2 == true)
                 {
                     classPrefix = "LWS_";
                 }
-
-                if (s.SoldierClass.ToString() == LWClass.Psionic.ToString())
+                if (isRichards == true)
+                {
+                    classSuffix = "_RW";
+                }
+                if (s.SoldierClass == "Mage" && isRichards == true)
+                {
+                    PsiClassName = s.SoldierClass + classSuffix;
+                }
+                else if (s.SoldierClass.ToString() == LWClass.Psionic.ToString())
                 {
                     composedClassName = PsiClassName;
                 }
                 else
                 {
-                    composedClassName = classPrefix + s.SoldierClass.ToString();
+                    composedClassName = classPrefix + s.SoldierClass.ToString() + classSuffix;
                 }
                 textFor.AppendLine("; ---Set Class---");
                 textFor.AppendLine("MakeSoldierAClass \"" + s.FirstName + " " + s.LastName + "\" " + composedClassName);
@@ -121,21 +129,28 @@ namespace Xcom2CheatFileCreator
                 textFor.AppendLine("SetSoldierStat eStat_Defense " + s.Dodge + " " + s.FirstName + " " + s.LastName);
                 textFor.AppendLine("SetSoldierStat eStat_ArmorMitigation " + s.Armor + " " + s.FirstName + " " + s.LastName);
                 textFor.AppendLine("; ---Other Stats---");
-                if (1 == 1)
+
+                int modifiedHackSkill = 0;
+                if (s.SoldierClass == "Technician" || s.SoldierClass == "Specialist")
                 {
-                    string modifiedHackSkill = (s.SoldierClass == "Specialist" ? (s.Hack * 2) : s.Hack).ToString();
-                    textFor.AppendLine("SetSoldierStat eStat_Hacking " + modifiedHackSkill + " " + s.FirstName + " " + s.LastName);
+                    modifiedHackSkill = (s.Hack * 2);
                 }
                 else
                 {
-                    textFor.AppendLine("SetSoldierStat eStat_Hacking " + s.Hack + " " + s.FirstName + " " + s.LastName);
+                    modifiedHackSkill = s.Hack;
                 }
+                textFor.AppendLine("SetSoldierStat eStat_Hacking " + modifiedHackSkill + " " + s.FirstName + " " + s.LastName);
+
+                //else
+                //{
+                //    textFor.AppendLine("SetSoldierStat eStat_Hacking " + s.Hack + " " + s.FirstName + " " + s.LastName);
+                //}
                 //textFor.AppendLine("SetSoldierStat eStat_UtilityItems " + s.UtilitySlots + " " + s.FirstName + " " + s.LastName);
                 //textFor.AppendLine("SetSoldierStat eStat_BackpackSize 4" + " " + s.FirstName + " " + s.LastName);
                 //textFor.AppendLine("SetSoldierStat eStat_CombatSims 2" + " " + s.FirstName + " " + s.LastName);
                 textFor.AppendLine("SetSoldierStat eStat_Strength " + s.Strength + " " + s.FirstName + " " + s.LastName);
 
-                if (composedClassName == PsiClassName)
+                if (composedClassName == PsiClassName && isRichards == false)
                 {
                     textFor.AppendLine("MakeSoldierAPsiOp " + s.FirstName + " " + s.LastName);
                     //textFor.AppendLine("RankUpPsiOp " + s.FirstName + " " + s.LastName);
