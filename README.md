@@ -22,9 +22,12 @@ Note: In order for the cheat batch file to work, the names in the csv will need 
 
 ## USING THE CHEAT FILE GENERATOR
 1. Open the editor.
-2. Set your steam drive in the text box
-3. Select or unselect the option for 'the long war 2' depending on what game you are playing
-  1. This adds the prefix 'LWS_' before the class names, except for the Psionic class
+2. Set game type 
+  1. Set your steam drive in the text box for xcom 2
+  2. If playing 'Xcom 2 - Wrath of the Chosen, click the 'War Of The Chosen File Location' checkbox
+  3. Select or unselect the option for 'the long war 2' depending on what game you are playing
+    1. This adds the prefix 'LWS_' before the class names, except for the Psionic class
+  4. If using 'Richards Classes' mod, click the checkbox
 4. Click 'Load CSV file' 
   1. Select the input CSV from your desktop
 5. Review the soldiers in the datagrid below
