@@ -65,6 +65,10 @@ namespace Xcom2CheatFileCreator
             {
                 soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, XcomDirectoryOverride, LongWarCheckBox.IsChecked, RichardsClassesCheckBox.IsChecked);
             }
+            else if ((bool)WoTCLocationCheckBox.IsChecked)
+            {
+                soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, XcomDirectoryOverride, LongWarCheckBox.IsChecked, RichardsClassesCheckBox.IsChecked);
+            }
             else
             {
                 soldierList = SoldierTextFileGenerator.GenerateCheatFile(soldierList, inputFileName, levelup, driveLetter, LongWarCheckBox.IsChecked, RichardsClassesCheckBox.IsChecked);
@@ -248,6 +252,12 @@ namespace Xcom2CheatFileCreator
                 //    ClassListBox.Items.Refresh();
                 //}
             }
+        }
+
+        private void WoTCLocationCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            LocationOverride.IsChecked = false;
+            XcomDirectoryOverride = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\My Games\XCOM2 War of the Chosen\Binaries\";
         }
     }
 }

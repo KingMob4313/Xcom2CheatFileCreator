@@ -25,6 +25,7 @@
             <CheckBox x:Name="LocationOverride" Content="Override Xcom2 Location" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="156,47,0,0" Checked="LocationOverride_Checked" Unloaded="LocationOverride_Checked" FontWeight="Bold" />
             <Image HorizontalAlignment="Left" Height="24" ToolTip="Adds 'LWS_' prefix to all base class names except Psionics."  Width="24" Margin="317,18,0,0" VerticalAlignment="Top" Source="Nuvola_apps_question.png" MouseDown="LW2_MouseDown" />
             <CheckBox Content="Richards Classes 3 Tree" x:Name="RichardsClassesCheckBox" IsChecked="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="354,20,0,0" FontWeight="Bold" Checked="RichardsClassesCheckBox_Checked" />
+            <CheckBox Content="War Of The Chosen File Location" x:Name="WoTCLocationCheckBox" IsChecked="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="354,47,0,0" FontWeight="Bold" Checked="WoTCLocationCheckBox_Checked" />
         </Grid>
     </DockPanel>
 </Controls:MetroWindow>

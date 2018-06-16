@@ -86,13 +86,13 @@ namespace Xcom2CheatFileCreator
             StringBuilder textFor = new StringBuilder();
 
             textFor.AppendLine("; ---Date Generated : " + DateTime.Now.ToShortDateString() + "---");
-            foreach (Soldier s in soldierListInstance)
+            foreach (Soldier currentSoldier in soldierListInstance)
             {
                 string composedClassName = string.Empty;
                 string classPrefix = string.Empty;
                 string classSuffix = string.Empty;
                 bool isPsionicClass = false;
-
+                string fullNameAndTrueFlag = ("  \"" + currentSoldier.FirstName + " " + currentSoldier.LastName + "\" True");
                 if (isLongWar2 == true)
                 {
                     //classPrefix = "LWS_";
@@ -102,17 +102,17 @@ namespace Xcom2CheatFileCreator
                 if (isRichards == true)
                 {
                     //classPrefix = string.Empty;
-                    classSuffix = "_RS";
+                    classSuffix = "RS";
                 }
 
-                if (s.SoldierClass.ToString() == WotCClass.Mage.ToString())
+                if (currentSoldier.SoldierClass.ToString() == WotCClass.Mage.ToString())
                 {
-                    PsiClassName = classPrefix + s.SoldierClass + classSuffix;
+                    PsiClassName = classPrefix + currentSoldier.SoldierClass + classSuffix;
                     isPsionicClass = true;
                 }
-                else if (s.SoldierClass.ToString() == LWClass.Psionic.ToString())
+                else if (currentSoldier.SoldierClass.ToString() == LWClass.Psionic.ToString())
                 {
-                    PsiClassName = classPrefix + s.SoldierClass + classSuffix;
+                    PsiClassName = classPrefix + currentSoldier.SoldierClass + classSuffix;
                     isPsionicClass = true;
                 }
                 if (isPsionicClass)
@@ -121,16 +121,16 @@ namespace Xcom2CheatFileCreator
                 }
                 else
                 {
-                    composedClassName = classPrefix + s.SoldierClass.ToString() + classSuffix;
+                    composedClassName = classPrefix + currentSoldier.SoldierClass.ToString() + classSuffix;
                 }
                 textFor.AppendLine("; ---Set Class---");
-                textFor.AppendLine("MakeSoldierAClass \"" + s.FirstName + " " + s.LastName + "\" " + composedClassName);
+                textFor.AppendLine("MakeSoldierAClass \"" + currentSoldier.FirstName + " " + currentSoldier.LastName + "\" " + composedClassName);
 
-                AddMajorStatsText(textFor, s);
-                AddOffensiveStats(textFor, s);
-                AddDefenseStats(textFor, s);
+                AddMajorStatsText(textFor, currentSoldier, fullNameAndTrueFlag);
+                AddOffensiveStats(textFor, currentSoldier, fullNameAndTrueFlag);
+                AddDefenseStats(textFor, currentSoldier, fullNameAndTrueFlag);
 
-                AddSpecializedStats(level, isRichards, textFor, s, composedClassName);
+                AddSpecializedStats(level, isRichards, textFor, currentSoldier, composedClassName, fullNameAndTrueFlag);
                 textFor.AppendLine("; ---NEXT SOLDIER PLEASE---");
                 textFor.AppendLine(";");
             }
@@ -142,7 +142,7 @@ namespace Xcom2CheatFileCreator
             return textFor;
         }
 
-        private static void AddSpecializedStats(int level, bool? isRichards, StringBuilder textFor, Soldier s, string composedClassName)
+        private static void AddSpecializedStats(int level, bool? isRichards, StringBuilder textFor, Soldier s, string composedClassName, string fullNameAndTrueFlag)
         {
             textFor.AppendLine("; ---Other Stats---");
 
@@ -155,7 +155,7 @@ namespace Xcom2CheatFileCreator
             {
                 modifiedHackSkill = s.Hack;
             }
-            textFor.AppendLine("SetSoldierStat eStat_Hacking " + modifiedHackSkill + " " + s.FirstName + " " + s.LastName);
+            textFor.AppendLine("SetSoldierStat eStat_Hacking " + modifiedHackSkill + fullNameAndTrueFlag);
 
             //else
             //{
@@ -164,7 +164,7 @@ namespace Xcom2CheatFileCreator
             //textFor.AppendLine("SetSoldierStat eStat_UtilityItems " + s.UtilitySlots + " " + s.FirstName + " " + s.LastName);
             //textFor.AppendLine("SetSoldierStat eStat_BackpackSize 4" + " " + s.FirstName + " " + s.LastName);
             //textFor.AppendLine("SetSoldierStat eStat_CombatSims 2" + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_Strength " + s.Strength + " " + s.FirstName + " " + s.LastName);
+            textFor.AppendLine("SetSoldierStat eStat_Strength " + s.Strength + fullNameAndTrueFlag);
 
             if (composedClassName == PsiClassName && isRichards == false)
             {
@@ -179,32 +179,32 @@ namespace Xcom2CheatFileCreator
             }
         }
 
-        private static void AddDefenseStats(StringBuilder textFor, Soldier s)
+        private static void AddDefenseStats(StringBuilder textFor, Soldier s, string fullNameAndTrueFlag)
         {
             textFor.AppendLine("; ---Defense Stats---");
-            textFor.AppendLine("SetSoldierStat eStat_Will " + s.Will + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_Dodge " + (Math.Ceiling(s.Dodge * 1.5)).ToString() + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_Defense " + s.Dodge + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_ArmorMitigation " + s.Armor + " " + s.FirstName + " " + s.LastName);
+            textFor.AppendLine("SetSoldierStat eStat_Will " + s.Will + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_Dodge " + (Math.Ceiling(s.Dodge * 1.5)).ToString() + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_Defense " + s.Dodge + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_ArmorMitigation " + s.Armor + fullNameAndTrueFlag);
         }
 
-        private static void AddOffensiveStats(StringBuilder textFor, Soldier s)
+        private static void AddOffensiveStats(StringBuilder textFor, Soldier s, string fullNameAndTrueFlag)
         {
             textFor.AppendLine("; ---Offense Stats---");
-            textFor.AppendLine("SetSoldierStat eStat_Offense " + s.Aim + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_CritChance " + s.CritChance + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_ArmorPiercing " + s.ArmorPierce + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_FlankingCritChance " + s.FlankingCrit + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_FlankingAimBonus " + s.FlankingAim + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_PsiOffense " + s.PsiOffensive + " " + s.FirstName + " " + s.LastName);
+            textFor.AppendLine("SetSoldierStat eStat_Offense " + s.Aim + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_CritChance " + s.CritChance + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_ArmorPiercing " + s.ArmorPierce + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_FlankingCritChance " + s.FlankingCrit + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_FlankingAimBonus " + s.FlankingAim + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_PsiOffense " + s.PsiOffensive + fullNameAndTrueFlag);
         }
 
-        private static void AddMajorStatsText(StringBuilder textFor, Soldier s)
+        private static void AddMajorStatsText(StringBuilder textFor, Soldier s, string fullNameAndTrueFlag)
         {
             textFor.AppendLine("; ---General Stats---");
-            textFor.AppendLine("SetSoldierStat eStat_HP " + s.Health + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_Mobility " + s.Mobility + " " + s.FirstName + " " + s.LastName);
-            textFor.AppendLine("SetSoldierStat eStat_SightRadius " + s.SightRadius + " " + s.FirstName + " " + s.LastName);
+            textFor.AppendLine("SetSoldierStat eStat_HP " + s.Health + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_Mobility " + s.Mobility + fullNameAndTrueFlag);
+            textFor.AppendLine("SetSoldierStat eStat_SightRadius " + s.SightRadius + fullNameAndTrueFlag);
         }
 
         public static void WriteCSVFile(SaveFileDialog csvsfd, List<Soldier> soldierList)
