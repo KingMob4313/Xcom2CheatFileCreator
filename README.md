@@ -7,28 +7,32 @@ Instructions:
 1. Right click on Xcom 2
 2. Select Properties
 3. Under the general tab 
-  1. Click on 'Set Launch Options'
-  2. In the text box add: "-allowconsole -log -autodebug" without quotation marks. 
+   1. Click on 'Set Launch Options'
+   2. In the text box add: "-allowconsole -log -autodebug" without quotation marks. 
 Once you're done, you can open the console from in-game using the tilde (~) key.
 
 ## READYING THE TEMPLATE (Optional)
 1. Open the 'cheatfiletemplate' in any spreadsheet manager (Google Sheets works well)
-  1. Since it is a text file as well, you could manage it in a text file editor as well
+   1. Since it is a text file as well, you could manage it in a text file editor as well
 2. There will be two lines for soldiers already in the file. 
-  1. Copy paste to add more lines for soldiers
+   1. Copy paste to add more lines for soldiers
 3. Arrange the stats for the soldiers as you see fit.
 Note: In order for the cheat batch file to work, the names in the csv will need to match the names of the soldiers in your save game.
 4. Export the sheet as csv to your desktop
 
 ## USING THE CHEAT FILE GENERATOR
 1. Open the editor.
-2. Set your steam drive in the text box
-3. Select or unselect the option for 'the long war 2' depending on what game you are playing
-  1. This adds the prefix 'LWS_' before the class names, except for the Psionic class
+2. Set game type 
+   1. Set your steam drive in the text box for xcom 2
+   2. If playing 'Xcom 2 - Wrath of the Chosen', click the 'War Of The Chosen File Location' checkbox
+   3. Select or unselect the option for 'the long war 2' depending on what game you are playing
+      1. This adds the prefix 'LWS_' before the class names, except for the Psionic class
+   4. If using 'Richards Classes' mod, click the checkbox
+      1. This adds the prefix 'RS_' before the class names, except for the Psionic class
 4. Click 'Load CSV file' 
-  1. Select the input CSV from your desktop
+   1. Select the input CSV from your desktop
 5. Review the soldiers in the datagrid below
-  1. Values can be edited in the grid - See 'SOLDIER EDITING' below
+   1. Values can be edited in the grid - See 'SOLDIER EDITING' below
 6. Click Generate Cheat File
 7. Save it as an easily used filename - cheat.txt works well
 Note: this will set all soldiers to level 2 in their respective class.
